@@ -5535,7 +5535,7 @@ textarea {
 .about-quote-area:before {
     left: -50px;
     top: -4px;
-    background: url(/img/z-top.svg) no-repeat;
+    background: url(../img/z-top.svg) no-repeat;
     content: "";
     height: 32px;
     position: absolute;
@@ -5547,7 +5547,7 @@ textarea {
     bottom: -7px;
     right: -22px;
     transform: rotate(180deg);
-    background: url(/img/z-top.svg) no-repeat;
+    background: url(../img/z-top.svg) no-repeat;
     content: "";
     height: 32px;
     position: absolute;

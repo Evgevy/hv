@@ -1021,4 +1021,240 @@ document.querySelectorAll('.city-item').forEach(item => {
         });
 
     }
+
+
+    const zoomContainer = document.querySelector('.zoom-container');
+
+if (zoomContainer) {
+
+    let activeId = null;
+    let lockedId = null;
+
+    // =========================
+    // ACTIVE STATES
+    // =========================
+
+    function setActive(id) {
+
+        if (activeId === id) return;
+
+        clearActive();
+
+        activeId = id;
+
+        document
+            .querySelectorAll(`[data-id="${id}"], #${CSS.escape(id)}`)
+            .forEach(el => el.classList.add('is-active'));
+    }
+
+    function clearActive() {
+
+        if (!activeId) return;
+
+        document
+            .querySelectorAll(`[data-id="${activeId}"], #${CSS.escape(activeId)}`)
+            .forEach(el => el.classList.remove('is-active'));
+
+        activeId = null;
+    }
+
+    // =========================
+    // PANELS
+    // =========================
+
+    function closePanels() {
+
+        document.querySelectorAll('.service-map--city')
+            .forEach(el => {
+
+                el.classList.add('d-none');
+                el.classList.remove('is-active');
+
+            });
+    }
+
+    // =========================
+    // PANEL POSITION
+    // =========================
+
+    function positionPanel(dot, panel) {
+
+        const scrollContainer = document.querySelector('.service-map');
+
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const dotRect = dot.getBoundingClientRect();
+
+        const isMobile = window.innerWidth <= 1200;
+
+        const offset = 12;
+
+        const panelW = panel.offsetWidth;
+        const panelH = panel.offsetHeight;
+
+        let x = dotRect.left - containerRect.left + scrollContainer.scrollLeft;
+        let y = dotRect.top - containerRect.top + scrollContainer.scrollTop;
+
+        let left;
+        let top;
+
+        const viewportW = scrollContainer.clientWidth;
+        const viewportH = scrollContainer.clientHeight;
+
+        // MOBILE
+
+        if (isMobile) {
+
+            left = x - panelW / 2;
+            top = y - panelH - offset;
+
+            if (top < scrollContainer.scrollTop) {
+                top = y + offset;
+            }
+
+            if (left + panelW > scrollContainer.scrollLeft + viewportW) {
+                left = scrollContainer.scrollLeft + viewportW - panelW - offset;
+            }
+
+            if (left < scrollContainer.scrollLeft) {
+                left = scrollContainer.scrollLeft + offset;
+            }
+        }
+
+        // DESKTOP
+
+        else {
+
+            left = x + dotRect.width + offset;
+            top = y - panelH / 2;
+
+            if (left + panelW > scrollContainer.scrollLeft + viewportW) {
+                left = x - panelW - offset;
+            }
+
+            if (left < scrollContainer.scrollLeft) {
+                left = scrollContainer.scrollLeft + offset;
+            }
+
+            if (top < scrollContainer.scrollTop) {
+                top = scrollContainer.scrollTop + offset;
+            }
+
+            if (top + panelH > scrollContainer.scrollTop + viewportH) {
+                top = scrollContainer.scrollTop + viewportH - panelH - offset;
+            }
+        }
+
+        panel.style.left = left + 'px';
+        panel.style.top = top + 'px';
+    }
+
+    // =========================
+    // HOVER
+    // =========================
+
+    zoomContainer.addEventListener('mousemove', (e) => {
+
+        const el = e.target.closest('[data-id], circle');
+
+        if (!el) {
+
+            if (!lockedId) clearActive();
+
+            return;
+        }
+
+        const id = el.dataset?.id || el.id;
+
+        if (!id) return;
+
+        if (lockedId && lockedId !== id) return;
+
+        setActive(id);
+    });
+
+    zoomContainer.addEventListener('mouseleave', () => {
+
+        if (!lockedId) clearActive();
+
+    });
+
+    // =========================
+    // PANEL CLICK BLOCK
+    // =========================
+
+    document.querySelectorAll('.service-map--city').forEach(panel => {
+
+        panel.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+    });
+
+    // =========================
+    // GLOBAL CLICK
+    // =========================
+
+    document.addEventListener('click', (e) => {
+
+        const dot = e.target.closest('circle');
+
+        // click on dot
+
+        if (dot) {
+
+            const id = dot.id;
+
+            closePanels();
+
+            lockedId = id;
+
+            setActive(id);
+
+            const panel = document.querySelector(`.service-map--city[data-id="${id}"]`);
+
+            if (panel) {
+
+                panel.classList.remove('d-none');
+                panel.classList.add('is-active');
+
+                requestAnimationFrame(() => {
+
+                    requestAnimationFrame(() => {
+
+                        positionPanel(dot, panel);
+
+                    });
+
+                });
+            }
+
+            return;
+        }
+
+        // click inside svg
+
+        const insideSvg = e.target.closest('.zoom-container');
+
+        if (insideSvg) {
+
+            closePanels();
+
+            lockedId = null;
+
+            clearActive();
+
+            return;
+        }
+
+        // click outside
+
+        closePanels();
+
+        lockedId = null;
+
+        clearActive();
+
+    });
+
+}
 });
