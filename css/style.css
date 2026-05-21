@@ -6504,6 +6504,7 @@ textarea {
     line-height: 140%;
     letter-spacing: 0%;
     text-align: left;
+    color: rgba(28, 28, 28, 1);
     margin: 0 0 20px;
 }
 
@@ -6981,6 +6982,7 @@ textarea {
     font-size: 18px;
     line-height: 18px;
     letter-spacing: 0%;
+    color: rgba(28, 28, 28, 1);
     transition: .3s;
 }
 
@@ -8145,6 +8147,7 @@ textarea {
         line-height: 14px;
         letter-spacing: 0%;
         vertical-align: middle;
+        color: rgba(28, 28, 28, 1);
     }
 
     .filter-open svg {
@@ -9198,13 +9201,12 @@ textarea {
         display: flex;
         align-items: center;
         gap: 10px;
-    
         border: 0;
         background: transparent;
         padding: 0;
-    
         font-size: 14px;
         font-weight: 500;
+        color: rgba(28, 28, 28, 1);
     }
     
   
