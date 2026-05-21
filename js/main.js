@@ -1025,217 +1025,228 @@ document.querySelectorAll('.city-item').forEach(item => {
 
     const zoomContainer = document.querySelector('.zoom-container');
 
-if (zoomContainer) {
+    if (zoomContainer) {
 
-    let activeId = null;
-    let lockedId = null;
+        let activeId = null;
+        let lockedId = null;
 
-    // =========================
-    // ACTIVE STATES
-    // =========================
+        // =========================
+        // ACTIVE STATES
+        // =========================
 
-    function setActive(id) {
+        function setActive(id) {
 
-        if (activeId === id) return;
+            if (activeId === id) return;
 
-        clearActive();
+            clearActive();
 
-        activeId = id;
+            activeId = id;
 
-        document
-            .querySelectorAll(`[data-id="${id}"], #${CSS.escape(id)}`)
-            .forEach(el => el.classList.add('is-active'));
-    }
-
-    function clearActive() {
-
-        if (!activeId) return;
-
-        document
-            .querySelectorAll(`[data-id="${activeId}"], #${CSS.escape(activeId)}`)
-            .forEach(el => el.classList.remove('is-active'));
-
-        activeId = null;
-    }
-
-    // =========================
-    // PANELS
-    // =========================
-
-    function closePanels() {
-
-        document.querySelectorAll('.service-map--city')
-            .forEach(el => {
-
-                el.classList.add('d-none');
-                el.classList.remove('is-active');
-
-            });
-    }
-
-    // =========================
-    // PANEL POSITION
-    // =========================
-
-    function positionPanel(dot, panel) {
-
-        const scrollContainer = document.querySelector('.service-map');
-
-        const containerRect = scrollContainer.getBoundingClientRect();
-        const dotRect = dot.getBoundingClientRect();
-
-        const isMobile = window.innerWidth <= 1200;
-
-        const offset = 12;
-
-        const panelW = panel.offsetWidth;
-        const panelH = panel.offsetHeight;
-
-        let x = dotRect.left - containerRect.left + scrollContainer.scrollLeft;
-        let y = dotRect.top - containerRect.top + scrollContainer.scrollTop;
-
-        let left;
-        let top;
-
-        const viewportW = scrollContainer.clientWidth;
-        const viewportH = scrollContainer.clientHeight;
-
-        // MOBILE
-
-        if (isMobile) {
-
-            left = x - panelW / 2;
-            top = y - panelH - offset;
-
-            if (top < scrollContainer.scrollTop) {
-                top = y + offset;
-            }
-
-            if (left + panelW > scrollContainer.scrollLeft + viewportW) {
-                left = scrollContainer.scrollLeft + viewportW - panelW - offset;
-            }
-
-            if (left < scrollContainer.scrollLeft) {
-                left = scrollContainer.scrollLeft + offset;
-            }
+            document
+                .querySelectorAll(`[data-id="${id}"], #${CSS.escape(id)}`)
+                .forEach(el => el.classList.add('is-active'));
         }
 
-        // DESKTOP
+        function clearActive() {
 
-        else {
+            if (!activeId) return;
 
-            left = x + dotRect.width + offset;
-            top = y - panelH / 2;
+            document
+                .querySelectorAll(`[data-id="${activeId}"], #${CSS.escape(activeId)}`)
+                .forEach(el => el.classList.remove('is-active'));
 
-            if (left + panelW > scrollContainer.scrollLeft + viewportW) {
-                left = x - panelW - offset;
-            }
-
-            if (left < scrollContainer.scrollLeft) {
-                left = scrollContainer.scrollLeft + offset;
-            }
-
-            if (top < scrollContainer.scrollTop) {
-                top = scrollContainer.scrollTop + offset;
-            }
-
-            if (top + panelH > scrollContainer.scrollTop + viewportH) {
-                top = scrollContainer.scrollTop + viewportH - panelH - offset;
-            }
+            activeId = null;
         }
 
-        panel.style.left = left + 'px';
-        panel.style.top = top + 'px';
-    }
+        // =========================
+        // PANELS
+        // =========================
 
-    // =========================
-    // HOVER
-    // =========================
+        function closePanels() {
 
-    zoomContainer.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.service-map--city')
+                .forEach(el => {
 
-        const el = e.target.closest('[data-id], circle');
+                    el.classList.add('d-none');
+                    el.classList.remove('is-active');
 
-        if (!el) {
+                });
+        }
+
+        // =========================
+        // PANEL POSITION
+        // =========================
+
+        function positionPanel(dot, panel) {
+
+            const scrollContainer = document.querySelector('.service-map');
+
+            const containerRect = scrollContainer.getBoundingClientRect();
+            const dotRect = dot.getBoundingClientRect();
+
+            const isMobile = window.innerWidth <= 1200;
+
+            const offset = 12;
+
+            const panelW = panel.offsetWidth;
+            const panelH = panel.offsetHeight;
+
+            let x = dotRect.left - containerRect.left + scrollContainer.scrollLeft;
+            let y = dotRect.top - containerRect.top + scrollContainer.scrollTop;
+
+            let left;
+            let top;
+
+            const viewportW = scrollContainer.clientWidth;
+            const viewportH = scrollContainer.clientHeight;
+
+            // MOBILE
+
+            if (isMobile) {
+
+                left = x - panelW / 2;
+                top = y - panelH - offset;
+
+                if (top < scrollContainer.scrollTop) {
+                    top = y + offset;
+                }
+
+                if (left + panelW > scrollContainer.scrollLeft + viewportW) {
+                    left = scrollContainer.scrollLeft + viewportW - panelW - offset;
+                }
+
+                if (left < scrollContainer.scrollLeft) {
+                    left = scrollContainer.scrollLeft + offset;
+                }
+            }
+
+            // DESKTOP
+
+            else {
+
+                left = x + dotRect.width + offset;
+                top = y - panelH / 2;
+
+                if (left + panelW > scrollContainer.scrollLeft + viewportW) {
+                    left = x - panelW - offset;
+                }
+
+                if (left < scrollContainer.scrollLeft) {
+                    left = scrollContainer.scrollLeft + offset;
+                }
+
+                if (top < scrollContainer.scrollTop) {
+                    top = scrollContainer.scrollTop + offset;
+                }
+
+                if (top + panelH > scrollContainer.scrollTop + viewportH) {
+                    top = scrollContainer.scrollTop + viewportH - panelH - offset;
+                }
+            }
+
+            panel.style.left = left + 'px';
+            panel.style.top = top + 'px';
+        }
+
+        // =========================
+        // HOVER
+        // =========================
+
+        zoomContainer.addEventListener('mousemove', (e) => {
+
+            const el = e.target.closest('[data-id], circle');
+
+            if (!el) {
+
+                if (!lockedId) clearActive();
+
+                return;
+            }
+
+            const id = el.dataset?.id || el.id;
+
+            if (!id) return;
+
+            if (lockedId && lockedId !== id) return;
+
+            setActive(id);
+        });
+
+        zoomContainer.addEventListener('mouseleave', () => {
 
             if (!lockedId) clearActive();
 
-            return;
-        }
-
-        const id = el.dataset?.id || el.id;
-
-        if (!id) return;
-
-        if (lockedId && lockedId !== id) return;
-
-        setActive(id);
-    });
-
-    zoomContainer.addEventListener('mouseleave', () => {
-
-        if (!lockedId) clearActive();
-
-    });
-
-    // =========================
-    // PANEL CLICK BLOCK
-    // =========================
-
-    document.querySelectorAll('.service-map--city').forEach(panel => {
-
-        panel.addEventListener('click', (e) => {
-            e.stopPropagation();
         });
 
-    });
+        // =========================
+        // PANEL CLICK BLOCK
+        // =========================
 
-    // =========================
-    // GLOBAL CLICK
-    // =========================
+        document.querySelectorAll('.service-map--city').forEach(panel => {
 
-    document.addEventListener('click', (e) => {
+            panel.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
 
-        const dot = e.target.closest('circle');
+        });
 
-        // click on dot
+        // =========================
+        // GLOBAL CLICK
+        // =========================
 
-        if (dot) {
+        document.addEventListener('click', (e) => {
 
-            const id = dot.id;
+            const dot = e.target.closest('circle');
 
-            closePanels();
+            // click on dot
 
-            lockedId = id;
+            if (dot) {
 
-            setActive(id);
+                const id = dot.id;
 
-            const panel = document.querySelector(`.service-map--city[data-id="${id}"]`);
+                closePanels();
 
-            if (panel) {
+                lockedId = id;
 
-                panel.classList.remove('d-none');
-                panel.classList.add('is-active');
+                setActive(id);
 
-                requestAnimationFrame(() => {
+                const panel = document.querySelector(`.service-map--city[data-id="${id}"]`);
+
+                if (panel) {
+
+                    panel.classList.remove('d-none');
+                    panel.classList.add('is-active');
 
                     requestAnimationFrame(() => {
 
-                        positionPanel(dot, panel);
+                        requestAnimationFrame(() => {
+
+                            positionPanel(dot, panel);
+
+                        });
 
                     });
+                }
 
-                });
+                return;
             }
 
-            return;
-        }
+            // click inside svg
 
-        // click inside svg
+            const insideSvg = e.target.closest('.zoom-container');
 
-        const insideSvg = e.target.closest('.zoom-container');
+            if (insideSvg) {
 
-        if (insideSvg) {
+                closePanels();
+
+                lockedId = null;
+
+                clearActive();
+
+                return;
+            }
+
+            // click outside
 
             closePanels();
 
@@ -1243,18 +1254,419 @@ if (zoomContainer) {
 
             clearActive();
 
-            return;
+        });
+
+    }
+    // =====================
+    // PRICE RANGE FUNCTION
+    // =====================
+
+    function initPriceRange(
+        sliderSelector,
+        minInputSelector,
+        maxInputSelector
+    ) {
+
+        if (!$(sliderSelector).length) return;
+
+        const minInput = $(minInputSelector);
+        const maxInput = $(maxInputSelector);
+
+        $(sliderSelector).ionRangeSlider({
+
+            type: "double",
+
+            min: 0,
+            max: 500000,
+
+            from: 0,
+            to: 500000,
+
+            step: 1000,
+
+            skin: "round",
+
+            onStart: updateInputs,
+            onChange: updateInputs,
+
+        });
+
+        const instance = $(sliderSelector).data("ionRangeSlider");
+
+        function format(value) {
+            return Number(value).toLocaleString('ru-RU');
         }
 
-        // click outside
+        function updateInputs(data) {
 
-        closePanels();
+            minInput.val(format(data.from));
+            maxInput.val(format(data.to));
 
-        lockedId = null;
+        }
 
-        clearActive();
+        // =====================
+        // INPUT MIN
+        // =====================
 
+        minInput.on('input', function () {
+
+            let val = +$(this).val().replace(/\s/g, '');
+
+            if (isNaN(val)) val = 0;
+
+            if (val > instance.result.to) {
+                val = instance.result.to;
+            }
+
+            instance.update({
+                from: val
+            });
+
+        });
+
+        // =====================
+        // INPUT MAX
+        // =====================
+
+        maxInput.on('input', function () {
+
+            let val = +$(this).val().replace(/\s/g, '');
+
+            if (isNaN(val)) val = 500000;
+
+            if (val < instance.result.from) {
+                val = instance.result.from;
+            }
+
+            instance.update({
+                to: val
+            });
+
+        });
+
+    }
+
+    // =====================
+    // DESKTOP
+    // =====================
+
+    initPriceRange(
+        '#priceRange',
+        '#minPrice',
+        '#maxPrice'
+    );
+
+    // =====================
+    // MOBILE
+    // =====================
+
+    initPriceRange(
+        '#priceRangeMobile',
+        '#minPriceMobile',
+        '#maxPriceMobile'
+    );
+
+
+
+    const list = document.getElementById('brandList');
+    const listMobile = document.getElementById('brandListMobile');
+    if (list || listMobile) {
+        const hidden = list.querySelector('.brand-hidden');
+        const hiddenMobile = listMobile.querySelector('.brand-hidden')
+        const btns = document.querySelectorAll('.brand-more');
+
+        if (hidden || btns || hiddenMobile) {
+            let opened = false;
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+
+                    opened = !opened;
+    
+                    
+                    hidden.classList.toggle('d-none');
+                    hiddenMobile.classList.toggle('d-none');
+    
+                    btn.textContent = opened ? 'Скрыть' : 'Показать еще';
+    
+                });
+            })
+           
+
+        }
+
+        
+
+    }
+
+    document.querySelectorAll('.filter-block').forEach(block => {
+
+        const btn = block.querySelector('.filter-head');
+        const body = block.querySelector('.filter-body');
+    
+        if (!btn || !body) return;
+    
+        // если блок закрыт — ставим collapsed
+        if (!body.classList.contains('show')) {
+            btn.classList.add('collapsed');
+        } else {
+            btn.classList.remove('collapsed');
+        }
+    
     });
 
-}
+
+
+    // ======================
+    // MOBILE CATALOG SHOW MORE
+    // ======================
+
+    const catalogList = document.getElementById('catalogMobileList');
+    const catalogBtn = document.getElementById('catalogMoreBtn');
+
+    if (catalogList && catalogBtn) {
+
+        const items = catalogList.querySelectorAll('.catalog-mobile-item');
+
+        let visible = 4;
+
+        function updateCatalog() {
+
+            // только мобилка
+            if (window.innerWidth > 990) {
+
+                items.forEach(item => {
+                    item.classList.remove('d-none');
+                });
+
+                catalogBtn.classList.add('d-none');
+
+                return;
+            }
+
+            // скрываем всё
+            items.forEach((item, index) => {
+
+                if (index < visible) {
+                    item.classList.remove('d-none');
+                } else {
+                    item.classList.add('d-none');
+                }
+
+            });
+
+            // если <= 4
+            if (items.length <= 4) {
+                catalogBtn.classList.add('d-none');
+                return;
+            }
+
+            catalogBtn.classList.remove('d-none');
+
+            // тексты кнопки
+            if (visible >= items.length) {
+
+                catalogBtn.textContent = 'Скрыть';
+
+            } else {
+
+                catalogBtn.textContent = 'Показать все категории';
+
+            }
+        }
+
+        catalogBtn.addEventListener('click', () => {
+
+            // 4 -> 10
+            if (visible === 4) {
+
+                visible += 6;
+
+                if (visible > items.length) {
+                    visible = items.length;
+                }
+
+            }
+
+            // все -> назад
+            else if (visible >= items.length) {
+
+                visible = 4;
+
+            }
+
+            // если еще есть
+            else {
+
+                visible = items.length;
+
+            }
+
+            updateCatalog();
+        });
+
+        updateCatalog();
+
+        window.addEventListener('resize', updateCatalog);
+    }
+
+    
+
+    (function () {
+
+        const btn = document.getElementById('sortMobileBtn');
+        const dropdown = document.getElementById('sortMobileDropdown');
+        const label = document.getElementById('sortMobileLabel');
+        const priceToggle = document.getElementById('sortPriceToggle');
+    
+        if (!btn || !dropdown || !label || !priceToggle) return;
+    
+        let activeSort = 'popularity';
+        let priceDir = 'desc';
+    
+        // открыть/закрыть список
+        btn.addEventListener('click', () => {
+            dropdown.classList.toggle('d-none');
+        });
+    
+        // выбор пункта
+        dropdown.querySelectorAll('.sort-mobile-item').forEach(item => {
+    
+            item.addEventListener('click', () => {
+    
+                const sort = item.dataset.sort;
+                activeSort = sort;
+    
+                // текст кнопки ВСЕГДА меняется только здесь
+                label.textContent = item.textContent.trim();
+    
+                // active класс
+                dropdown.querySelectorAll('.sort-mobile-item')
+                    .forEach(i => i.classList.remove('active'));
+    
+                item.classList.add('active');
+    
+                // SVG для price отдельно
+                if (sort === 'price') {
+                    priceToggle.classList.remove('d-none');
+                } else {
+                    priceToggle.classList.add('d-none');
+                }
+    
+                dropdown.classList.add('d-none');
+    
+                applySort();
+            });
+    
+        });
+    
+        // переключение ASC/DESC (ТОЛЬКО если price активен)
+        priceToggle.addEventListener('click', (e) => {
+    
+            e.stopPropagation();
+    
+            if (activeSort !== 'price') return;
+    
+            priceDir = priceDir === 'asc' ? 'desc' : 'asc';
+    
+            priceToggle.classList.toggle('asc', priceDir === 'asc');
+    
+            applySort();
+        });
+    
+        function applySort() {
+            console.log('SORT:', activeSort, priceDir);
+        }
+    
+    })();
+
+
+    
+    // СТРАНИЦА СРАВНЕНИЯ ТОВАРОВ
+    if (document.querySelector('.catalog-compare')) {
+        
+        document.querySelectorAll('.tab-pane').forEach(pane => {
+            
+            const mainEl = pane.querySelector('.slider-compare');
+            const rowEls = pane.querySelectorAll('.swiper-compare-row');
+
+            if (!mainEl) return;
+
+            const slidesCount = mainEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
+            
+            const btnPrev = pane.querySelector('.swiper-button-prev-compare');
+            const btnNext = pane.querySelector('.swiper-button-next-compare');
+
+            if (slidesCount <= 3) {
+                if (btnPrev) btnPrev.classList.add('d-none');
+                if (btnNext) btnNext.classList.add('d-none');
+            } else {
+                if (btnPrev) btnPrev.classList.remove('d-none');
+                if (btnNext) btnNext.classList.remove('d-none');
+            }
+
+            const rowSliders = [];
+            rowEls.forEach((rowEl) => {
+                const r = new Swiper(rowEl, {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    allowTouchMove: false,
+                    observer: true,       // Пересчет ширины колонок при смене таба
+                    observeParents: true, // Пересчет при показе родительского блока
+                    speed: 1200,
+                    breakpoints: {
+                        576: { slidesPerView: 2, spaceBetween: 10 },
+                        768: { slidesPerView: 2, spaceBetween: 10 },
+                        992: { slidesPerView: 3, spaceBetween: 10 },
+                        1200: { slidesPerView: 3, spaceBetween: 10 }
+                    }
+                });
+                rowSliders.push(r);
+            });
+
+            // Главный слайдер карточек товаров в этом табе
+            const mainSlider = new Swiper(mainEl, {
+                slidesPerView: 2,
+                spaceBetween: 10,
+                speed: 1200,
+                observer: true,       // Пересчет ширины колонок при смене таба
+                observeParents: true, // Пересчет при показе родительского блока
+                // Если слайдов <= 3, отключаем навигацию в Swiper, иначе — привязываем к кнопкам
+                navigation: (slidesCount <= 3) ? false : {
+                    nextEl: btnNext,
+                    prevEl: btnPrev,
+                },
+                breakpoints: {
+                    576: { slidesPerView: 2, spaceBetween: 10 },
+                    768: { slidesPerView: 2, spaceBetween: 10 },
+                    992: { slidesPerView: 3, spaceBetween: 10 },
+                    1200: { slidesPerView: 3, spaceBetween: 10 }
+                }
+            });
+
+            // Связываем скролл карточек с характеристиками ВНУТРИ ЭТОГО ТАБА
+            // mainSlider.on('slideChange', function () {
+            //     const activeIndex = mainSlider.activeIndex;
+            //     rowSliders.forEach(slider => {
+            //         if (slider.activeIndex !== activeIndex) {
+            //             slider.slideTo(activeIndex);
+            //         }
+            //     });
+            // });
+
+            mainSlider.on('setTranslate', function (swiper, translate) {
+                rowSliders.forEach(slider => {
+                    slider.setTranslate(translate);
+                });
+            });
+
+            mainSlider.on('setTransition', function (swiper, duration) {
+                rowSliders.forEach(slider => {
+                    slider.setTransition(duration);
+                });
+            });
+        });
+    }
+
+
 });
