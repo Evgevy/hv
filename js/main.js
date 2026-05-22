@@ -1669,4 +1669,159 @@ document.querySelectorAll('.city-item').forEach(item => {
     }
 
 
+    // ======================
+    // COOKIE BANNER
+    // ======================
+
+    (function () {
+
+        const banner = document.getElementById("cookieBanner1");
+        const btn = document.getElementById("cookieBtn1");
+
+        if (banner || btn) {
+             // уже принял cookie → скрываем
+            if (localStorage.getItem("cookieAccepted") === "true") {
+                banner.style.display = "none";
+                return;
+            }
+
+            setTimeout(() => {
+                banner.style.display = "flex";
+            }, 3000);
+
+            btn.addEventListener("click", () => {
+                banner.style.display = "none";
+                localStorage.setItem("cookieAccepted", "true");
+            });
+        }
+
+       
+
+    })();
+
+
+    const bar = document.getElementById("mobileTechBar");
+
+    if (bar && window.innerWidth <= 768) {
+
+        const footer = document.querySelector('footer');
+
+        let lastScroll = window.scrollY;
+
+        const startShowOffset = window.innerHeight * 0.40; // мягкий старт
+
+        function updateBar() {
+
+            const scrollY = window.scrollY;
+
+            const scrollDownEnough = scrollY > startShowOffset;
+
+            // если футер в зоне видимости — скрываем
+            const footerRect = footer?.getBoundingClientRect();
+            const footerVisible = footerRect
+                ? footerRect.top < window.innerHeight
+                : false;
+
+            if (scrollDownEnough && !footerVisible) {
+                bar.style.display = "flex";
+            } else {
+                bar.style.display = "none";
+            }
+
+            lastScroll = scrollY;
+        }
+
+        window.addEventListener("scroll", updateBar, { passive: true });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                bar.style.display = "none";
+            }
+        });
+
+        updateBar();
+    }
+
+
+
+    const openSendReview = document.getElementById('openSendReview');
+
+    if (openSendReview) {
+
+        openSendReview.addEventListener('click', () => {
+
+            const sellerModalEl = document.getElementById('sellerLoginModal');
+            const sendReviewEl = document.getElementById('sendReviewModal');
+
+            const sellerModal = bootstrap.Modal.getInstance(sellerModalEl);
+            sellerModal.hide();
+
+            sellerModalEl.addEventListener('hidden.bs.modal', function handler() {
+
+                const sendReviewModal = new bootstrap.Modal(sendReviewEl);
+                sendReviewModal.show();
+
+                sellerModalEl.removeEventListener('hidden.bs.modal', handler);
+
+            });
+
+        });
+
+    }
+
+
+    const ratingWrap = document.getElementById('reviewRating');
+    const ratingInput = document.getElementById('ratingValue');
+
+    if (ratingWrap) {
+
+        const stars = ratingWrap.querySelectorAll('.star');
+
+        let selectedRating = 0;
+
+        // hover
+        stars.forEach(star => {
+
+            star.addEventListener('mouseenter', () => {
+
+                const value = Number(star.dataset.value);
+
+                stars.forEach(s => {
+
+                    const current = Number(s.dataset.value);
+
+                    s.classList.toggle('hover', current <= value);
+
+                });
+
+            });
+
+            // click
+            star.addEventListener('click', () => {
+
+                selectedRating = Number(star.dataset.value);
+
+                ratingInput.value = selectedRating;
+
+                stars.forEach(s => {
+
+                    const current = Number(s.dataset.value);
+
+                    s.classList.toggle('active', current <= selectedRating);
+
+                });
+
+            });
+
+        });
+
+        // убрать hover
+        ratingWrap.addEventListener('mouseleave', () => {
+
+            stars.forEach(s => s.classList.remove('hover'));
+
+        });
+
+    }
+
 });

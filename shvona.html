@@ -255,7 +255,7 @@
 
                         </div>
 
-                        <button class="btn-header">
+                        <button class="btn-header" type="button" data-bs-toggle="modal" data-bs-target="#modalHeader">
                             Заказать технику
                         </button>
 
@@ -586,7 +586,9 @@
                         </a>
                     </ul>
                     <div class="mobile-buttons-links">
-                        <button type="button" class="btn-zakaz mb-5">Заказать технику</button>
+
+                        <button type="button" class="btn-zakaz mb-5" data-bs-toggle="modal"
+                            data-bs-target="#modalHeader">Заказать технику</button>
                         <div class="footer-phones">
                             <a href="tel:+78005007728" class="footer-phone">
                                 <span class="footer-bottom-phone">+7 (800) 500-77-28</span>
@@ -3351,6 +3353,459 @@
 
             </div>
         </div>
+    </div>
+
+    <div class="cookie-banner" id="cookieBanner1">
+        <div class="cookie-text">
+            <div class="cookie-title">Мы используем файлы cookie</div>
+            <div class="cookie-desc">
+                Продолжая использовать сайт, вы соглашаетесь <a href="">с&nbsp;политикой сбора и&nbsp;обработки
+                    данных</a>.
+            </div>
+        </div>
+
+        <button class="cookie-btn" id="cookieBtn1">Хорошо</button>
+    </div>
+
+    <div class="mobile-tech-bar" id="mobileTechBar">
+
+        <button type="button" class="mobile-tech-btn" data-bs-toggle="modal" data-bs-target="#modalHeader">
+            Заказать технику
+        </button>
+
+        <div class="mobile-tech-icons">
+            <a href="#" class="icon-link">
+                <img src="img/tg.svg" alt="Иконка">
+            </a>
+
+            <a href="#" class="icon-link">
+
+                <img src="img/mac.svg" alt="Иконка">
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="modalHeader" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered tech-modal">
+            <div class="modal-content">
+
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Заказать технику</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="modal-text">
+                        Оставьте ваши данные — наш менеджер перезвонит и уточнит условия заказа
+                    </p>
+
+                    <form class="tech-form">
+
+                        <div class="mb-3">
+                            <input type="text" name="tech" class="form-control"
+                                placeholder="Интересующая техника или запчасть">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Ваш E-mail">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" required>
+                        </div>
+
+                        <button type="submit" class="tech-btn">
+                            Отправить
+                        </button>
+
+                        <p class="privacy-text">
+                            Нажимая кнопку «Отправить», вы даете
+                            <a href="#">согласие на обработку и передачу</a> персональных данных
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered tech-modal forgot-modal">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 forgot-header">
+
+                    <!-- НАЗАД -->
+                    <button type="button" class="modal-back" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                        data-bs-dismiss="modal">
+
+                        <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                stroke="grey" stroke-width="0.5" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                stroke="grey" stroke-width="0.5" />
+                        </svg>
+
+                    </button>
+
+                    <!-- КРЕСТИК -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <h5 class="modal-title">
+                        Восстановление пароля
+                    </h5>
+
+                    <form class="forgot-form">
+
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Ваш E-mail" required>
+                        </div>
+
+                        <button type="submit" class="review-login-btn w-100">
+                            Отправить ссылку для сброса пароля
+                        </button>
+
+                        <p class="privacy-text mt-3">
+                            Нажимая кнопку
+                            «Отправить ссылку для сброса пароля»,
+                            вы даете
+                            <a href="#">
+                                согласие на обработку и передачу
+                            </a>
+                            своих персональных данных
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="sellerLoginModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered tech-modal forgot-modal">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 forgot-header">
+
+                    <button type="button" class="modal-back" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                        data-bs-dismiss="modal">
+
+                        <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                stroke="grey" stroke-width="0.5" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                stroke="grey" stroke-width="0.5" />
+                        </svg>
+
+                    </button>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <h5 class="modal-title">
+                        Вход в личный кабинет продавца
+                    </h5>
+
+                    <form class="forgot-form">
+
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Ваш E-mail" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" name="password" class="form-control" placeholder="Ваш пароль"
+                                required>
+                        </div>
+
+
+                        <button type="button" class="forgot-password mb-4" data-bs-toggle="modal"
+                            data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">
+
+                            Забыли пароль?
+                        </button>
+
+                        <div class="review-actions">
+
+                            <button type="button" class="review-login-btn" data-bs-toggle="modal"
+                                data-bs-target="#sendReviewModal">
+
+                                Войти
+                            </button>
+
+                            <button type="button" class="review-register-btn" data-bs-toggle="modal"
+                                data-bs-target="#registerModal" data-bs-dismiss="modal">
+
+                                Регистрация
+                            </button>
+
+                        </div>
+
+                        <p class="privacy-text">
+                            Нажимая кнопку «Войти», вы даете
+                            <a href="#">
+                                согласие на обработку и передачу
+                            </a>
+                            своих персональных данных
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered tech-modal forgot-modal">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 forgot-header">
+
+                    <button type="button" class="modal-back" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                        data-bs-dismiss="modal">
+
+                        <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                fill="#1C1C1C" />
+                            <path
+                                d="M10.3647 18.25C10.53 18.25 10.6958 18.2017 10.828 18.1041C11.1101 17.8953 11.1312 17.5394 10.8753 17.3095L1.87283 9.21937L10.8736 1.19202C11.1307 0.962745 11.1112 0.606907 10.83 0.397319C10.5489 0.187843 10.1125 0.203593 9.8555 0.432869L0.430868 8.83833C0.190678 9.05265 0.18985 9.38081 0.429073 9.59591L9.85356 18.0655C9.98973 18.1878 10.1769 18.25 10.3647 18.25Z"
+                                stroke="grey" stroke-width="0.5" />
+                            <path
+                                d="M0.939802 9.7803H21.5602C21.9411 9.7803 22.25 9.52852 22.25 9.2178C22.25 8.90707 21.9411 8.6553 21.5602 8.6553H0.939802C0.558756 8.6553 0.25 8.90707 0.25 9.2178C0.25 9.52852 0.558756 9.7803 0.939802 9.7803Z"
+                                stroke="grey" stroke-width="0.5" />
+                        </svg>
+
+                    </button>
+
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <h5 class="modal-title">
+                        Регистрация
+                    </h5>
+
+                    <form class="forgot-form">
+
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Ваше имя*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="tel" name="phone" class="form-control" placeholder="Ваш телефон*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Ваш E-mail*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="inn" class="form-control" placeholder="ИНН организации*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="company" class="form-control"
+                                placeholder="Наименование организации*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="kpp" class="form-control" placeholder="КПП организации">
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="text" name="address" class="form-control" placeholder="Адрес организации*"
+                                required>
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="review-actions">
+
+                            <button type="submit" class="review-login-btn">
+                                Зарегистрироваться
+                            </button>
+
+                            <button type="button" class="review-register-btn" data-bs-toggle="modal"
+                                data-bs-target="#sellerLoginModal" data-bs-dismiss="modal">
+
+                                Войти
+                            </button>
+
+                        </div>
+
+                        <p class="privacy-text">
+                            Нажимая кнопку «Зарегистрироваться», вы даете
+                            <a href="#">
+                                согласие на обработку и передачу
+                            </a>
+                            персональных данных
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="sendReviewModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered tech-modal review-send-modal">
+            <div class="modal-content">
+
+                <div class="modal-header border-0">
+
+                    <h5 class="modal-title">
+                        Ваш отзыв о товаре
+                    </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form class="review-send-form">
+
+                        <!-- RATING -->
+                        <div class="review-rating-wrap mb-4">
+
+                            <div class="review-rating-title">
+                                Ваша оценка
+                            </div>
+
+                            <div class="review-rating" id="reviewRating">
+
+                                <span class="star" data-value="1">
+                                    <svg width="35" height="33" viewBox="0 0 35 33" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.2266 10.0459L34.6689 12.5068L26.8682 21.1758L28.0479 32.7422L17.334 28.0547L6.62109 32.7422L7.80078 21.1758L0 12.5068L11.4424 10.0459L17.334 0L23.2266 10.0459Z"
+                                            fill="#ECECEC" />
+                                    </svg>
+                                </span>
+                                <span class="star" data-value="2">
+                                    <svg width="35" height="33" viewBox="0 0 35 33" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.2266 10.0459L34.6689 12.5068L26.8682 21.1758L28.0479 32.7422L17.334 28.0547L6.62109 32.7422L7.80078 21.1758L0 12.5068L11.4424 10.0459L17.334 0L23.2266 10.0459Z"
+                                            fill="#ECECEC" />
+                                    </svg>
+                                </span>
+                                <span class="star" data-value="3">
+                                    <svg width="35" height="33" viewBox="0 0 35 33" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.2266 10.0459L34.6689 12.5068L26.8682 21.1758L28.0479 32.7422L17.334 28.0547L6.62109 32.7422L7.80078 21.1758L0 12.5068L11.4424 10.0459L17.334 0L23.2266 10.0459Z"
+                                            fill="#ECECEC" />
+                                    </svg>
+                                </span>
+                                <span class="star" data-value="4">
+                                    <svg width="35" height="33" viewBox="0 0 35 33" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.2266 10.0459L34.6689 12.5068L26.8682 21.1758L28.0479 32.7422L17.334 28.0547L6.62109 32.7422L7.80078 21.1758L0 12.5068L11.4424 10.0459L17.334 0L23.2266 10.0459Z"
+                                            fill="#ECECEC" />
+                                    </svg>
+                                </span>
+                                <span class="star" data-value="5">
+                                    <svg width="35" height="33" viewBox="0 0 35 33" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.2266 10.0459L34.6689 12.5068L26.8682 21.1758L28.0479 32.7422L17.334 28.0547L6.62109 32.7422L7.80078 21.1758L0 12.5068L11.4424 10.0459L17.334 0L23.2266 10.0459Z"
+                                            fill="#ECECEC" />
+                                    </svg>
+                                </span>
+
+                            </div>
+
+                            <input type="hidden" name="rating" id="ratingValue">
+
+                        </div>
+
+                        <!-- REVIEW -->
+                        <div class="mb-3">
+                            <textarea name="review" class="form-control review-textarea" placeholder="Отзыв*"
+                                required></textarea>
+                        </div>
+
+                        <!-- ADVANTAGES -->
+                        <div class="mb-3">
+                            <input type="text" name="advantages" class="form-control" placeholder="Достоинства">
+                        </div>
+
+                        <!-- DISADVANTAGES -->
+                        <div class="mb-4">
+                            <input type="text" name="disadvantages" class="form-control" placeholder="Недостатки">
+                        </div>
+
+                        <button type="submit" class="review-login-btn w-100">
+                            Отправить
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
 </body>
